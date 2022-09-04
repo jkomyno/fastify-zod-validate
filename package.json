@@ -1,6 +1,6 @@
 {
   "name": "fastify-zod-validate",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Fastify route handler validation plugin using Zod in TypeScript",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
