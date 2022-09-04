@@ -1,6 +1,6 @@
 # fastify-zod-validate
 
-![CI](https://github.com/jkomyno/fastify-zod-validate/workflows/CI/badge.svg?branch=main)
+![CI](https://github.com/jkomyno/fastify-zod-validate/workflows/ci/badge.svg?branch=main)
 [![NPM version](https://img.shields.io/npm/v/fastify-zod-validate.svg?style=flat)](https://www.npmjs.com/package/fastify-zod-validate)
 
 A type-safe validation plugin for [Fastify](https://github.com/fastify/fastify) `4.x` and [Zod](https://github.com/colinhacks/zod), arguably the best TypeScript-first validation library.
