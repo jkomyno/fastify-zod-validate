@@ -68,7 +68,6 @@ export const zodValidateRouter: FastifyPluginCallback = (fastify, options, next)
         data: {
           message: `OK user with ID ${userID}`,
           body,
-          query,
         },
       })
     }
@@ -82,7 +81,7 @@ export const zodValidateRouter: FastifyPluginCallback = (fastify, options, next)
 
 ```typescript
 import fastifyZodValidate from 'fastify-zod-validate'
-import Fastify, { FastifyInstance, FastifyPluginCallback } from 'fastify'
+import Fastify from 'fastify'
 
 export async function setupServer() {
   const server = Fastify()
@@ -106,6 +105,45 @@ export async function setupServer() {
   return server
 }
 ```
+
+- Start your `fastify` server:
+
+```typescript
+async function main() {
+  const server = await setupServer()
+  server.listen({ port: 3000 })
+}
+
+main()
+```
+
+- See validation in action:
+
+  The following HTTP request
+
+  ```bash
+  {
+  curl -0 -X POST http://localhost:3000/route/user/1234 \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -H "X-User: user" \
+  --data-binary @- << EOF
+  {
+    "username": "invalid, and checked",
+    "balance": -1
+  }
+  EOF
+  } | jq '.'
+  ```
+
+  will be rejected with the following error
+
+  ```
+  {
+    "statusCode": 422,
+    "error": "Unprocessable Entity",
+    "message": "Unprocessable Entity - Custom Zod Validation Error"
+  }
+  ```
 
 We encourage you to take a look at the [`__tests__`](./__tests__) folder for a more complete example.
 
